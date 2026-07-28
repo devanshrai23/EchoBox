@@ -13,6 +13,7 @@
     "bcryptjs": "^3.0.3",
     "mongoose": "^9.8.0",
     "next": "16.2.11",
+    "next-auth": "^4.24.15",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-email": "^6.9.1",
@@ -29,5 +30,10 @@
     "eslint-config-next": "16.2.11",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "sharp@0.34.5": true,
+    "unrs-resolver@1.12.2": true
   }
 }
