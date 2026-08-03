@@ -1,17 +1,17 @@
 [
-  {
-    "title": "Message from a Secret Admirer",
-    "content": "I really love your new project. Keep up the good work!",
-    "received": "10 minutes ago"
-  },
-  {
-    "title": "Anonymous Feedback",
-    "content": "You should consider adding a dark mode to your app.",
-    "received": "2 hours ago"
-  },
-  {
-    "title": "A Question",
-    "content": "What inspired you to build this application?",
-    "received": "1 day ago"
-  }
+	{
+		"title": "Message from a Secret Admirer",
+		"content": "I really love your new project. Keep up the good work!",
+		"received": "10 minutes ago"
+	},
+	{
+		"title": "Anonymous Feedback",
+		"content": "You should consider adding a dark mode to your app.",
+		"received": "2 hours ago"
+	},
+	{
+		"title": "A Question",
+		"content": "What inspired you to build this application?",
+		"received": "1 day ago"
+	}
 ]
