@@ -36,7 +36,7 @@ export default function VerifyAccount() {
 				code: data.verifyCode,
 			});
 
-			// @ts-ignore
+			// @ts-expect-error Base UI ToastManager typing
 			toast.create({
 				title: 'Success',
 				description: response.data.message,
@@ -45,7 +45,7 @@ export default function VerifyAccount() {
 			router.replace('/sign-in');
 		} catch (error) {
 			const axiosError = error as AxiosError<ApiResponse>;
-			// @ts-ignore
+			// @ts-expect-error Base UI ToastManager typing
 			toast.create({
 				title: 'Verification Failed',
 				description:
