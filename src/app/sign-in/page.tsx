@@ -38,14 +38,14 @@ export default function SignInForm() {
 
 		if (result?.error) {
 			if (result.error === 'CredentialsSignin') {
-				// @ts-ignore
+				// @ts-expect-error Base UI ToastManager typing
 				toast.create({
 					title: 'Login Failed',
 					description: 'Incorrect username or password',
 					type: 'error',
 				});
 			} else {
-				// @ts-ignore
+				// @ts-expect-error Base UI ToastManager typing
 				toast.create({
 					title: 'Error',
 					description: result.error,
@@ -64,7 +64,7 @@ export default function SignInForm() {
 			<div className="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900 rounded-lg shadow-md">
 				<div className="text-center">
 					<h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-gray-900 dark:text-white">
-						Welcome Back to True Feedback
+						Welcome Back to Echobox
 					</h1>
 					<p className="mb-4 text-gray-600 dark:text-gray-300">Sign in to continue your secret conversations</p>
 				</div>
