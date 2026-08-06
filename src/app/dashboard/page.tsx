@@ -38,11 +38,11 @@ export default function UserDashboard() {
       ];
       setMessages(fakeMessages);
       if (refresh) {
-        // @ts-ignore
+        // @ts-expect-error Base UI ToastManager typing
         toast.create({ title: 'Refreshed Messages' });
       }
     } catch (error) {
-      // @ts-ignore
+      // @ts-expect-error Base UI ToastManager typing
       toast.create({ title: 'Error', type: 'error' });
     } finally {
       setIsLoading(false);
@@ -59,10 +59,10 @@ export default function UserDashboard() {
     try {
       await toggleAcceptMessages(checked);
       setAcceptMessages(checked);
-      // @ts-ignore
+      // @ts-expect-error Base UI ToastManager typing
       toast.create({ title: `Accept Messages is now ${checked ? 'ON' : 'OFF'}` });
     } catch (error) {
-      // @ts-ignore
+      // @ts-expect-error Base UI ToastManager typing
       toast.create({ title: 'Error', type: 'error' });
     } finally {
       setIsSwitchLoading(false);
@@ -81,7 +81,7 @@ export default function UserDashboard() {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl);
-    // @ts-ignore
+    // @ts-expect-error Base UI ToastManager typing
     toast.create({ title: 'URL Copied!' });
   };
 
