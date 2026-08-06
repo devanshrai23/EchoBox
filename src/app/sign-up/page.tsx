@@ -28,10 +28,6 @@ export default function SignUpForm() {
 	const [usernameMessage, setUsernameMessage] = useState('');
 	const [isCheckingUsername, setIsCheckingUsername] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	// In newer usehooks-ts, it's useDebounceValue. Assuming v3. If v2, useDebounce.
-	// We'll just stick to a simple timeout if we don't want to guess, or use useDebounceValue which returns [debouncedValue, setValue]
-	// Actually, let's just write our own debounce or check package.json.
-	// If it fails, we will fix it. The previous project used `useDebounce(username, 300)`. Let's assume it works exactly the same or we'll correct it.
 	const [debouncedUsername] = useDebounceValue(username, 300);
 
 	const router = useRouter();
@@ -73,7 +69,7 @@ export default function SignUpForm() {
 		try {
 			const response = await axios.post<ApiResponse>('/api/sign-up', data);
 
-			// @ts-ignore
+			// @ts-expect-error Base UI ToastManager typing
 			toast.create({
 				title: 'Success',
 				description: response.data.message,
@@ -84,11 +80,11 @@ export default function SignUpForm() {
 		} catch (error) {
 			console.error('Error during sign-up:', error);
 			const axiosError = error as AxiosError<ApiResponse>;
-			let errorMessage = axiosError.response?.data.message ?? 'There was a problem with your sign-up. Please try again.';
+			const errorMessage = axiosError.response?.data.message ?? 'There was a problem with your sign-up. Please try again.';
 
-			// @ts-ignore
+			// @ts-expect-error Base UI ToastManager typing
 			toast.create({
-				title: 'Sign Up Failed',
+				title: 'Sign Up Failed', 
 				description: errorMessage,
 				type: 'error',
 			});
