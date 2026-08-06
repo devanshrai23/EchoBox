@@ -61,15 +61,16 @@ export default function SendMessage() {
 			);
 
 			if (response.success) {
-				// @ts-ignore
+				// @ts-expect-error Base UI ToastManager typing
 				toast.create({ title: response.message });
 				form.reset({ content: '' });
 			} else {
-				// @ts-ignore
+				// @ts-expect-error Base UI ToastManager typing
 				toast.create({ title: 'Error', type: 'error' });
 			}
-		} catch (error) {
-			// @ts-ignore
+		}  
+		catch (error) {
+			// @ts-expect-error Base UI ToastManager typing
 			toast.create({
 				title: 'Error',
 				description: 'Failed to send message',
