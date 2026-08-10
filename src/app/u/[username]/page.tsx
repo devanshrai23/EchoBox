@@ -200,7 +200,7 @@ export default function SendMessage() {
 				<div className="mb-4">
 					Get Your Own Message Board
 				</div>
-				<Link href={'/sign-up'}>
+				<Link href={'/'}>
 					<Button variant="default">
 						Create Your Account
 					</Button>
