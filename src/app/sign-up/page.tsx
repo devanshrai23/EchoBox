@@ -92,42 +92,43 @@ export default function SignUpForm() {
 	};
 
 	return (
-		<div className="flex justify-center items-center min-h-screen bg-gray-800">
-			<div className="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+		<div className="flex justify-center items-center min-h-[calc(100vh-80px)] bg-background px-4 py-12">
+			<div className="w-full max-w-md p-8 space-y-8 bg-card/50 backdrop-blur-xl border border-border rounded-3xl shadow-2xl">
 				<div className="text-center">
-					<h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-gray-900 dark:text-white">
-						Join Echobox
+					<h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3 text-white">
+						Join EchoBox
 					</h1>
-					<p className="mb-4 text-gray-600 dark:text-gray-300">Sign up to start your anonymous adventure</p>
+					<p className="text-muted-foreground">Sign up to start your anonymous adventure</p>
 				</div>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
 						<FormField
 							name="username"
 							control={form.control}
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Username</FormLabel>
+									<FormLabel className="text-foreground">Username</FormLabel>
 									<Input
+										className="bg-input/50 border-border focus-visible:ring-primary h-11 transition-all"
 										{...field}
 										onChange={(e) => {
 											field.onChange(e);
 											setUsername(e.target.value);
 										}}
 									/>
-									{isCheckingUsername && <Loader2 className="animate-spin h-4 w-4 mt-2" />}
+									{isCheckingUsername && <Loader2 className="animate-spin h-4 w-4 mt-2 text-primary" />}
 									{!isCheckingUsername && usernameMessage && (
 										<p
-											className={`text-sm mt-2 ${
+											className={`text-sm mt-2 font-medium ${
 												usernameMessage === 'Username is unique'
-													? 'text-green-500'
-													: 'text-red-500'
+													? 'text-emerald-400'
+													: 'text-destructive'
 											}`}
 										>
 											{usernameMessage}
 										</p>
 									)}
-									<FormMessage />
+									<FormMessage className="text-destructive/90" />
 								</FormItem>
 							)}
 						/>
@@ -136,10 +137,10 @@ export default function SignUpForm() {
 							control={form.control}
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Email</FormLabel>
-									<Input {...field} name="email" />
-									<p className="text-muted text-gray-400 text-sm mt-1">We will send you a verification code</p>
-									<FormMessage />
+									<FormLabel className="text-foreground">Email</FormLabel>
+									<Input className="bg-input/50 border-border focus-visible:ring-primary h-11 transition-all" {...field} name="email" />
+									<p className="text-muted-foreground text-xs mt-1">We will send you a verification code</p>
+									<FormMessage className="text-destructive/90" />
 								</FormItem>
 							)}
 						/>
@@ -149,28 +150,28 @@ export default function SignUpForm() {
 							control={form.control}
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<Input type="password" {...field} name="password" />
-									<FormMessage />
+									<FormLabel className="text-foreground">Password</FormLabel>
+									<Input className="bg-input/50 border-border focus-visible:ring-primary h-11 transition-all" type="password" {...field} name="password" />
+									<FormMessage className="text-destructive/90" />
 								</FormItem>
 							)}
 						/>
-						<Button type="submit" className="w-full" disabled={isSubmitting}>
+						<Button type="submit" className="w-full h-11 mt-4 text-base bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl transition-all shadow-lg shadow-primary/20" disabled={isSubmitting}>
 							{isSubmitting ? (
 								<>
 									<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-									Please wait
+									Creating Account...
 								</>
 							) : (
-								'Sign Up'
+								'Create Account'
 							)}
 						</Button>
 					</form>
 				</Form>
-				<div className="text-center mt-4">
-					<p className="text-gray-600 dark:text-gray-300">
+				<div className="text-center mt-6">
+					<p className="text-muted-foreground text-sm">
 						Already a member?{' '}
-						<Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
+						<Link href="/sign-in" className="text-primary hover:text-primary/80 font-medium transition-colors">
 							Sign in
 						</Link>
 					</p>

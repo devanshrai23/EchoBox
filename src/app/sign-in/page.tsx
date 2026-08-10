@@ -58,24 +58,24 @@ export default function SignInForm() {
 	};
 
 	return (
-		<div className="flex justify-center items-center min-h-screen bg-gray-800">
-			<div className="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+		<div className="flex justify-center items-center min-h-[calc(100vh-80px)] bg-background px-4 py-12">
+			<div className="w-full max-w-md p-8 space-y-8 bg-card/50 backdrop-blur-xl border border-border rounded-3xl shadow-2xl">
 				<div className="text-center">
-					<h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-gray-900 dark:text-white">
-						Welcome Back to Echobox
+					<h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3 text-white">
+						Welcome Back
 					</h1>
-					<p className="mb-4 text-gray-600 dark:text-gray-300">Sign in to continue your secret conversations</p>
+					<p className="text-muted-foreground">Sign in to continue your secret conversations</p>
 				</div>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
 						<FormField
 							name="identifier"
 							control={form.control}
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Email/Username</FormLabel>
-									<Input {...field} />
-									<FormMessage />
+									<FormLabel className="text-foreground">Email or Username</FormLabel>
+									<Input className="bg-input/50 border-border focus-visible:ring-primary h-11 transition-all" {...field} />
+									<FormMessage className="text-destructive/90" />
 								</FormItem>
 							)}
 						/>
@@ -84,19 +84,19 @@ export default function SignInForm() {
 							control={form.control}
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<Input type="password" {...field} />
-									<FormMessage />
+									<FormLabel className="text-foreground">Password</FormLabel>
+									<Input className="bg-input/50 border-border focus-visible:ring-primary h-11 transition-all" type="password" {...field} />
+									<FormMessage className="text-destructive/90" />
 								</FormItem>
 							)}
 						/>
-						<Button className="w-full" type="submit">Sign In</Button>
+						<Button className="w-full h-11 mt-4 text-base bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl transition-all shadow-lg shadow-primary/20" type="submit">Sign In</Button>
 					</form>
 				</Form>
-				<div className="text-center mt-4">
-					<p className="text-gray-600 dark:text-gray-300">
+				<div className="text-center mt-6">
+					<p className="text-muted-foreground text-sm">
 						Not a member yet?{' '}
-						<Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
+						<Link href="/sign-up" className="text-primary hover:text-primary/80 font-medium transition-colors">
 							Sign up
 						</Link>
 					</p>

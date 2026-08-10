@@ -55,13 +55,13 @@ export default function VerifyAccount() {
 	};
 
 	return (
-		<div className="flex justify-center items-center min-h-screen bg-gray-800">
-			<div className="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+		<div className="flex justify-center items-center min-h-[calc(100vh-80px)] bg-background px-4 py-12">
+			<div className="w-full max-w-md p-8 space-y-8 bg-card/50 backdrop-blur-xl border border-border rounded-3xl shadow-2xl">
 				<div className="text-center">
-					<h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-gray-900 dark:text-white">
-						Verify Your Account
+					<h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3 text-white">
+						Verify Account
 					</h1>
-					<p className="mb-4 text-gray-600 dark:text-gray-300">Enter the verification code sent to your email</p>
+					<p className="text-muted-foreground">Enter the verification code sent to your email</p>
 				</div>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -70,13 +70,13 @@ export default function VerifyAccount() {
 							control={form.control}
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Verification Code</FormLabel>
-									<Input {...field} />
-									<FormMessage />
+									<FormLabel className="text-foreground">Verification Code</FormLabel>
+									<Input className="bg-input/50 border-border focus-visible:ring-primary h-11 text-center text-lg tracking-widest transition-all" {...field} placeholder="000000" />
+									<FormMessage className="text-destructive/90" />
 								</FormItem>
 							)}
 						/>
-						<Button type="submit" className="w-full">Verify</Button>
+						<Button type="submit" className="w-full h-11 mt-4 text-base bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl transition-all shadow-lg shadow-primary/20">Verify</Button>
 					</form>
 				</Form>
 			</div>
