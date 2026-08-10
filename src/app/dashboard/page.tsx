@@ -42,7 +42,7 @@ export default function UserDashboard() {
     setIsSwitchLoading(false);
     try {
       const response = await axios.get<ApiResponse>('/api/get-messages');
-      setMessages(response.data.data || []);
+      setMessages((response.data.messages as unknown as Message[]) || []);
       if (refresh) {
         toast.add({ title: 'Refreshed Messages', description: 'Showing latest messages' });
       }
