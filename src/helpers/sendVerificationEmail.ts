@@ -11,7 +11,7 @@ export async function sendVerificationEmail(
 ): Promise<ApiResponse> {
 	try {
 		await resend.emails.send({
-			from: 'devanshrai2385@gmail.com',
+			from: 'EchoBox <onboarding@resend.dev>',
 			to: email,
 			subject: 'EchoBox | Verification Code',
 			react: VerificationEmail({ username, otp: verifyCode }),
