@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
 				token._id = user._id?.toString();
 				token.username = user.username;
 				token.isVerified = user.isVerified;
-				token.isAcceptingMessages = user.isAcceptingMessage;
+				token.isAcceptingMessages = (user as any).isAcceptingMessage;
 			}
 			return token;
 		},
