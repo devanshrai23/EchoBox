@@ -69,11 +69,11 @@ export default function UserDashboard() {
     return <div className="text-center p-8">Please login to view dashboard</div>;
   }
 
-  const { email } = session.user as User;
+  const { username, email } = session.user as User;
   
   // Use a fallback for baseUrl if window is undefined
   const baseUrl = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : '';
-  const profileUrl = `${baseUrl}/u/${email?.split('@')[0]}`; // fallback to email prefix if no username
+  const profileUrl = `${baseUrl}/u/${username || email?.split('@')[0]}`; // fallback to email prefix if no username
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl);

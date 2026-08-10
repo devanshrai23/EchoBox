@@ -22,7 +22,7 @@ export default function Navbar() {
 					<div className="flex items-center gap-4">
 						<span className="mr-4">
 							Welcome,{' '}
-							{user?.name ||
+							{user?.username ||
 								user?.email}
 						</span>
 						<Button
