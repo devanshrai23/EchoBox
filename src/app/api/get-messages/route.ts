@@ -51,7 +51,7 @@ export async function GET(request: Request) {
 			{
 				success: true,
 				message: 'Messages fetched successfully',
-				data: user[0].messages,
+				messages: user[0].messages,
 			},
 			{ status: 200 },
 		);
