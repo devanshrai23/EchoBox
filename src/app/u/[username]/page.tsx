@@ -21,7 +21,9 @@ import * as z from 'zod';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
-import { suggestMessages, sendMessage } from '@/app/actions';
+import { suggestMessages } from '@/app/actions';
+import axios, { AxiosError } from 'axios';
+import { ApiResponse } from '@/types/ApiResponse';
 
 const specialChar = '||';
 
@@ -55,22 +57,23 @@ export default function SendMessage() {
 		setIsLoading(true);
 		try {
 			if (!username) return;
-			const response = await sendMessage(
-				username as string,
-				data.content,
-			);
+			const response = await axios.post<ApiResponse>('/api/send-message', {
+				username: username as string,
+				content: data.content,
+			});
 
-			if (response.success) {
-				toast.add({ title: response.message });
+			if (response.data.success) {
+				toast.add({ title: response.data.message });
 				form.reset({ content: '' });
 			} else {
 				toast.add({ title: 'Error', type: 'error' });
 			}
 		}  
 		catch (error) {
+			const axiosError = error as AxiosError<ApiResponse>;
 			toast.add({
 				title: 'Error',
-				description: 'Failed to send message',
+				description: axiosError.response?.data.message || 'Failed to send message',
 				type: 'error',
 			});
 		} finally {

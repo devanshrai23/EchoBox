@@ -9,7 +9,8 @@ import { Loader2, RefreshCcw } from 'lucide-react';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
-import { toggleAcceptMessages } from '@/app/actions';
+import axios, { AxiosError } from 'axios';
+import { ApiResponse } from '@/types/ApiResponse';
 
 type Message = {
   _id: string;
@@ -25,41 +26,69 @@ export default function UserDashboard() {
 
   const { data: session } = useSession();
 
-  const handleDeleteMessage = (messageId: string) => {
-    setMessages(messages.filter((message) => message._id !== messageId));
+  const handleDeleteMessage = async (messageId: string) => {
+    try {
+      const response = await axios.delete<ApiResponse>(`/api/delete-message/${messageId}`);
+      toast.add({ title: response.data.message });
+      setMessages(messages.filter((message) => message._id !== messageId));
+    } catch (error) {
+      const axiosError = error as AxiosError<ApiResponse>;
+      toast.add({ title: 'Error', description: axiosError.response?.data.message ?? 'Failed to delete message', type: 'error' });
+    }
   };
 
   const fetchMessages = useCallback(async (refresh: boolean = false) => {
     setIsLoading(true);
+    setIsSwitchLoading(false);
     try {
-      // TODO: Fetch messages from Server Action instead of API
-      const fakeMessages: Message[] = [
-        { _id: '1', content: 'This is a test message that someone sent you!', createdAt: new Date() }
-      ];
-      setMessages(fakeMessages);
+      const response = await axios.get<ApiResponse>('/api/get-messages');
+      setMessages(response.data.data || []);
       if (refresh) {
-        toast.add({ title: 'Refreshed Messages' });
+        toast.add({ title: 'Refreshed Messages', description: 'Showing latest messages' });
       }
     } catch (error) {
-      toast.add({ title: 'Error', type: 'error' });
+      const axiosError = error as AxiosError<ApiResponse>;
+      if (axiosError.response?.status === 401 && axiosError.response.data.message === 'User not found') {
+        // Safe to ignore, user just has no messages yet (the API throws 401 if user length === 0 from aggregation)
+        setMessages([]);
+      } else {
+        toast.add({ title: 'Error', description: axiosError.response?.data.message || 'Failed to fetch messages', type: 'error' });
+      }
     } finally {
       setIsLoading(false);
+      setIsSwitchLoading(false);
+    }
+  }, []);
+
+  const fetchAcceptMessages = useCallback(async () => {
+    setIsSwitchLoading(true);
+    try {
+      const response = await axios.get<ApiResponse>('/api/accept-messages');
+      setAcceptMessages(response.data.isAcceptingMessages as boolean);
+    } catch (error) {
+      toast.add({ title: 'Error', description: 'Failed to fetch message settings', type: 'error' });
+    } finally {
+      setIsSwitchLoading(false);
     }
   }, []);
 
   useEffect(() => {
     if (!session || !session.user) return;
     fetchMessages();
-  }, [session, fetchMessages]);
+    fetchAcceptMessages();
+  }, [session, fetchMessages, fetchAcceptMessages]);
 
   const handleSwitchChange = async (checked: boolean) => {
     setIsSwitchLoading(true);
     try {
-      await toggleAcceptMessages(checked);
+      const response = await axios.post<ApiResponse>('/api/accept-messages', {
+        acceptMessages: checked,
+      });
       setAcceptMessages(checked);
-      toast.add({ title: `Accept Messages is now ${checked ? 'ON' : 'OFF'}` });
+      toast.add({ title: response.data.message });
     } catch (error) {
-      toast.add({ title: 'Error', type: 'error' });
+      const axiosError = error as AxiosError<ApiResponse>;
+      toast.add({ title: 'Error', description: axiosError.response?.data.message ?? 'Failed to update message settings', type: 'error' });
     } finally {
       setIsSwitchLoading(false);
     }
