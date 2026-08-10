@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/toast';
-import { deleteMessage } from '@/app/actions';
 
 type Message = {
 	_id: string;
@@ -29,24 +28,8 @@ type MessageCardProps = {
 };
 
 export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
-	const handleDeleteConfirm = async () => {
-		try {
-			const response = await deleteMessage(message._id);
-			if (response.success) {
-				toast.add({
-					title: 'Message Deleted',
-					description:
-						'Your message has been permanently deleted.',
-				});
-				onMessageDelete(message._id);
-			}
-		} catch (error) {
-			toast.add({
-				title: 'Error',
-				description: 'Failed to delete message.',
-				type: 'error',
-			});
-		}
+	const handleDeleteConfirm = () => {
+		onMessageDelete(message._id);
 	};
 
 	const displayDate = new Date(message.createdAt).toLocaleString();

@@ -25,6 +25,7 @@ export default function UserDashboard() {
   const [acceptMessages, setAcceptMessages] = useState(true);
 
   const { data: session } = useSession();
+  const switchLock = React.useRef(false);
 
   const handleDeleteMessage = async (messageId: string) => {
     try {
@@ -79,6 +80,8 @@ export default function UserDashboard() {
   }, [session, fetchMessages, fetchAcceptMessages]);
 
   const handleSwitchChange = async (checked: boolean) => {
+    if (switchLock.current) return;
+    switchLock.current = true;
     setIsSwitchLoading(true);
     try {
       const response = await axios.post<ApiResponse>('/api/accept-messages', {
@@ -91,6 +94,7 @@ export default function UserDashboard() {
       toast.add({ title: 'Error', description: axiosError.response?.data.message ?? 'Failed to update message settings', type: 'error' });
     } finally {
       setIsSwitchLoading(false);
+      switchLock.current = false;
     }
   };
 
