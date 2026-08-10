@@ -39,6 +39,27 @@ To help spark conversations, EchoBox integrates directly with Google's **Gemini 
 - **Emails**: Resend & React Email
 - **Validation**: Zod & React Hook Form
 
+## 📂 Project Structure
+
+```text
+├── src/
+│   ├── app/                # Next.js App Router (Pages, Layouts, API Routes)
+│   │   ├── api/            # Backend API routes (Auth, Messages)
+│   │   ├── dashboard/      # Protected user dashboard
+│   │   ├── sign-in/        # User authentication pages
+│   │   ├── sign-up/        # User registration flow
+│   │   └── u/[username]/   # Public profile message boards
+│   ├── components/         # Reusable UI components (shadcn, Navbar, etc.)
+│   ├── helpers/            # Utility functions (Sending emails, formatters)
+│   ├── lib/                # Library configurations (MongoDB connection)
+│   ├── model/              # Mongoose database schemas
+│   ├── schemas/            # Zod validation schemas
+│   └── types/              # TypeScript type definitions
+├── emails/                 # React Email templates
+├── public/                 # Static assets (images, fonts)
+└── (config files)          # tailwind.config, next.config, package.json
+```
+
 ## 💻 Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine.
