@@ -9,23 +9,16 @@ export const authOptions: NextAuthOptions = {
 		CredentialsProvider({
 			name: 'Credentials',
 			credentials: {
-				email: { label: 'Email', type: 'email' },
-				password: {
-					label: 'Password',
-					type: 'password',
-				},
+				identifier: { label: 'Email or Username', type: 'text' },
+				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials: any): Promise<any> {
 				await dbConnect();
 				try {
 					const user = await userModel.findOne({
 						$or: [
-							{
-								email: credentials.email,
-							},
-							{
-								username: credentials.email,
-							},
+							{ email: credentials.identifier },
+							{ username: credentials.identifier },
 						],
 					});
 					if (!user) {
@@ -73,8 +66,7 @@ export const authOptions: NextAuthOptions = {
 				token._id = user._id?.toString();
 				token.username = user.username;
 				token.isVerified = user.isVerified;
-				token.isAcceptingMessages =
-					user.isAcceptingMessages;
+				token.isAcceptingMessages = user.isAcceptingMessage;
 			}
 			return token;
 		},
