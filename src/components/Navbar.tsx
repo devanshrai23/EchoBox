@@ -10,7 +10,7 @@ export default function Navbar() {
 	const user = session?.user;
 
 	return (
-		<nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white">
+		<nav className="p-4 md:p-6 sticky top-0 z-50 w-full border-b border-border bg-background/60 backdrop-blur-md supports-[backdrop-filter]:bg-background/40">
 			<div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
 				<Link
 					href="/"
@@ -26,11 +26,9 @@ export default function Navbar() {
 								user?.email}
 						</span>
 						<Button
-							onClick={() =>
-								signOut()
-							}
-							className="w-full md:w-auto bg-slate-100 text-black hover:bg-slate-200"
-							variant="outline"
+							onClick={() => signOut()}
+							className="w-full md:w-auto rounded-full"
+							variant="secondary"
 						>
 							Logout
 						</Button>
@@ -38,8 +36,7 @@ export default function Navbar() {
 				) : (
 					<Link href="/sign-in">
 						<Button
-							className="w-full md:w-auto bg-slate-100 text-black hover:bg-slate-200"
-							variant="outline"
+							className="w-full md:w-auto rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
 						>
 							Login
 						</Button>
