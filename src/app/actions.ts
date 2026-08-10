@@ -24,7 +24,7 @@ export async function sendMessage(username: string, content: string) {
 export async function suggestMessages() {
 	try {
 		const { text } = await generateText({
-			model: google('gemini-1.5-pro-latest'),
+			model: google('gemini-1.5-flash'),
 			prompt: "Create a list of 3 open-ended and engaging questions formatted as a single string. Each question should be separated by '||'. These questions are for an anonymous messaging platform, like 'What's a secret talent you have?'. Do not include quotes or numbering.",
 		});
 		return { success: true, text };
