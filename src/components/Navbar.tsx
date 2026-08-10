@@ -16,7 +16,7 @@ export default function Navbar() {
 					href="/"
 					className="text-xl font-bold mb-4 md:mb-0"
 				>
-					True Feedback
+					EchoBox
 				</Link>
 				{session ? (
 					<div className="flex items-center gap-4">

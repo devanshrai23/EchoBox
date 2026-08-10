@@ -69,8 +69,7 @@ export default function SignUpForm() {
 		try {
 			const response = await axios.post<ApiResponse>('/api/sign-up', data);
 
-			// @ts-expect-error Base UI ToastManager typing
-			toast.create({
+			toast.add({
 				title: 'Success',
 				description: response.data.message,
 			});
@@ -82,8 +81,7 @@ export default function SignUpForm() {
 			const axiosError = error as AxiosError<ApiResponse>;
 			const errorMessage = axiosError.response?.data.message ?? 'There was a problem with your sign-up. Please try again.';
 
-			// @ts-expect-error Base UI ToastManager typing
-			toast.create({
+			toast.add({
 				title: 'Sign Up Failed', 
 				description: errorMessage,
 				type: 'error',
@@ -98,7 +96,7 @@ export default function SignUpForm() {
 			<div className="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-900 rounded-lg shadow-md">
 				<div className="text-center">
 					<h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-gray-900 dark:text-white">
-						Join True Feedback
+						Join Echobox
 					</h1>
 					<p className="mb-4 text-gray-600 dark:text-gray-300">Sign up to start your anonymous adventure</p>
 				</div>

@@ -19,10 +19,10 @@ export default function Home() {
 				<section className="text-center mb-8 md:mb-12">
 					<h1 className="text-3xl md:text-5xl font-bold">
 						Dive into the World of Anonymous
-						Feedback
+						Feedbacks
 					</h1>
 					<p className="mt-3 md:mt-4 text-base md:text-lg">
-						True Feedback - Where your
+						Echobox - Where your
 						identity remains a secret.
 					</p>
 				</section>
@@ -74,7 +74,7 @@ export default function Home() {
 
 			{/* Footer */}
 			<footer className="text-center p-4 md:p-6 bg-gray-900 text-white">
-				© {new Date().getFullYear()} True Feedback. All
+				© {new Date().getFullYear()} Echobox. All
 				rights reserved.
 			</footer>
 		</>

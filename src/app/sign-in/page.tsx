@@ -38,15 +38,13 @@ export default function SignInForm() {
 
 		if (result?.error) {
 			if (result.error === 'CredentialsSignin') {
-				// @ts-expect-error Base UI ToastManager typing
-				toast.create({
+				toast.add({
 					title: 'Login Failed',
 					description: 'Incorrect username or password',
 					type: 'error',
 				});
 			} else {
-				// @ts-expect-error Base UI ToastManager typing
-				toast.create({
+				toast.add({
 					title: 'Error',
 					description: result.error,
 					type: 'error',

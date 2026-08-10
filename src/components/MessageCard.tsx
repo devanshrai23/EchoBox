@@ -33,8 +33,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
 		try {
 			const response = await deleteMessage(message._id);
 			if (response.success) {
-				// @ts-expect-error Base UI ToastManager typing
-				toast.create({
+				toast.add({
 					title: 'Message Deleted',
 					description:
 						'Your message has been permanently deleted.',
@@ -42,8 +41,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
 				onMessageDelete(message._id);
 			}
 		} catch (error) {
-			// @ts-expect-error Base UI ToastManager typing
-			toast.create({
+			toast.add({
 				title: 'Error',
 				description: 'Failed to delete message.',
 				type: 'error',
