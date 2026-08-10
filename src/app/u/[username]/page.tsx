@@ -98,113 +98,109 @@ export default function SendMessage() {
 	};
 
 	return (
-		<div className="container mx-auto my-8 p-6 bg-white dark:bg-gray-900 rounded max-w-4xl shadow-sm">
-			<h1 className="text-4xl font-bold mb-6 text-center">
-				Public Profile Link
-			</h1>
-			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="space-y-6"
-				>
-					<FormField
-						control={form.control}
-						name="content"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel className="text-lg">
-									Send
-									Anonymous
-									Message
-									to @
-									{
-										username
-									}
-								</FormLabel>
-								<FormControl>
-									<Textarea
-										placeholder="Write your anonymous message here"
-										className="resize-none h-32"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<div className="flex justify-center">
-						{isLoading ? (
-							<Button disabled>
-								<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-								Please wait
-							</Button>
-						) : (
-							<Button
-								type="submit"
-								disabled={
-									isLoading ||
-									!messageContent
-								}
-							>
-								Send It
-							</Button>
-						)}
-					</div>
-				</form>
-			</Form>
-
-			<div className="space-y-4 my-12">
-				<div className="space-y-2">
-					<Button
-						onClick={fetchSuggestedMessages}
-						disabled={isSuggestLoading}
+	return (
+		<div className="container mx-auto my-8 px-4 md:px-8 w-full max-w-4xl">
+			<div className="bg-card/50 backdrop-blur-xl border border-border rounded-3xl shadow-2xl p-6 md:p-10">
+				<h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-center text-white">
+					Public Profile Link
+				</h1>
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className="space-y-6"
 					>
-						{isSuggestLoading ? (
-							<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-						) : null}
-						Suggest Messages
-					</Button>
-					<p className="text-sm text-muted-foreground">
-						Click on any message below to
-						select it.
-					</p>
+						<FormField
+							control={form.control}
+							name="content"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="text-xl text-foreground font-semibold">
+										Send Anonymous Message to @{username}
+									</FormLabel>
+									<FormControl>
+										<Textarea
+											placeholder="Write your anonymous message here"
+											className="resize-none h-32 bg-input/50 border-border focus-visible:ring-primary mt-2 text-lg"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage className="text-destructive/90" />
+								</FormItem>
+							)}
+						/>
+						<div className="flex justify-center mt-6">
+							{isLoading ? (
+								<Button disabled className="h-12 px-8 text-lg rounded-xl">
+									<Loader2 className="mr-2 h-5 w-5 animate-spin" />
+									Please wait
+								</Button>
+							) : (
+								<Button
+									type="submit"
+									disabled={isLoading || !messageContent}
+									className="h-12 px-8 text-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl transition-all shadow-lg shadow-primary/20"
+								>
+									Send It
+								</Button>
+							)}
+						</div>
+					</form>
+				</Form>
+
+				<div className="space-y-6 my-12 pt-8 border-t border-border/50">
+					<div className="flex flex-col items-center space-y-4">
+						<Button
+							onClick={fetchSuggestedMessages}
+							disabled={isSuggestLoading}
+							variant="secondary"
+							className="h-11 rounded-xl"
+						>
+							{isSuggestLoading ? (
+								<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+							) : null}
+							Suggest Messages
+						</Button>
+						<p className="text-sm text-muted-foreground">
+							Click on any message below to select it.
+						</p>
+					</div>
+					<Card className="bg-background/40 border-border shadow-none">
+						<CardHeader>
+							<h3 className="text-xl font-semibold text-foreground">
+								Suggested Messages
+							</h3>
+						</CardHeader>
+						<CardContent className="flex flex-col space-y-3">
+							{parseStringMessages(
+								suggestedString,
+							).map((message, index) => (
+								<Button
+									key={index}
+									variant="outline"
+									className="mb-2 h-auto text-wrap py-4 px-6 justify-start text-left bg-background/50 border-border hover:bg-background/80 hover:text-primary transition-colors rounded-xl"
+									onClick={() =>
+										handleMessageClick(
+											message,
+										)
+									}
+								>
+									{message}
+								</Button>
+							))}
+						</CardContent>
+					</Card>
 				</div>
-				<Card>
-					<CardHeader>
-						<h3 className="text-xl font-semibold">
-							Messages
-						</h3>
-					</CardHeader>
-					<CardContent className="flex flex-col space-y-4">
-						{parseStringMessages(
-							suggestedString,
-						).map((message, index) => (
-							<Button
-								key={index}
-								variant="outline"
-								className="mb-2 h-auto text-wrap py-3"
-								onClick={() =>
-									handleMessageClick(
-										message,
-									)
-								}
-							>
-								{message}
-							</Button>
-						))}
-					</CardContent>
-				</Card>
-			</div>
-			<Separator className="my-6" />
-			<div className="text-center">
-				<div className="mb-4">
-					Get Your Own Message Board
+				<Separator className="my-10 bg-border/60" />
+				<div className="text-center space-y-4">
+					<div className="text-lg font-medium text-foreground">
+						Get Your Own Message Board
+					</div>
+					<Link href={'/sign-up'}>
+						<Button className="h-11 px-6 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-all">
+							Create Your Account
+						</Button>
+					</Link>
 				</div>
-				<Link href={'/'}>
-					<Button variant="default">
-						Create Your Account
-					</Button>
-				</Link>
 			</div>
 		</div>
 	);

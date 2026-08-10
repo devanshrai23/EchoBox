@@ -110,61 +110,73 @@ export default function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white dark:bg-gray-900 rounded w-full max-w-6xl shadow-sm">
-      <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+    <div className="container mx-auto my-8 px-4 md:px-8 w-full max-w-6xl">
+      <div className="bg-card/50 backdrop-blur-xl border border-border rounded-3xl shadow-2xl p-6 md:p-8">
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6 text-white">
+          User Dashboard
+        </h1>
 
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
-        <div className="flex items-center">
-          <input
-            type="text"
-            value={profileUrl}
-            disabled
-            className="input border rounded-md w-full p-2 mr-2 bg-gray-100 dark:bg-gray-800 text-gray-500"
-          />
-          <Button onClick={copyToClipboard}>Copy</Button>
-        </div>
-      </div>
-
-      <div className="mb-6 flex items-center">
-        <Switch
-          checked={acceptMessages}
-          onCheckedChange={handleSwitchChange}
-          disabled={isSwitchLoading}
-        />
-        <span className="ml-2 font-medium">
-          Accept Messages: {acceptMessages ? 'On' : 'Off'}
-        </span>
-      </div>
-      <Separator />
-
-      <Button
-        className="mt-6 mb-4"
-        variant="outline"
-        onClick={(e) => {
-          e.preventDefault();
-          fetchMessages(true);
-        }}
-      >
-        {isLoading ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
-        ) : (
-          <RefreshCcw className="h-4 w-4" />
-        )}
-      </Button>
-      
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {messages.length > 0 ? (
-          messages.map((message) => (
-            <MessageCard
-              key={message._id}
-              message={message}
-              onMessageDelete={handleDeleteMessage}
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold mb-3 text-foreground">Copy Your Unique Link</h2>
+          <div className="flex items-center space-x-2">
+            <input
+              type="text"
+              value={profileUrl}
+              disabled
+              className="bg-input/50 border-border text-muted-foreground border rounded-xl w-full p-3 focus-visible:ring-primary transition-all h-11"
             />
-          ))
-        ) : (
-          <p className="text-muted-foreground">No messages to display.</p>
-        )}
+            <Button onClick={copyToClipboard} className="h-11 px-6 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl transition-all shadow-lg shadow-primary/20">
+              Copy
+            </Button>
+          </div>
+        </div>
+
+        <div className="mb-6 flex items-center bg-background/40 p-4 rounded-xl border border-border w-fit">
+          <Switch
+            checked={acceptMessages}
+            onCheckedChange={handleSwitchChange}
+            disabled={isSwitchLoading}
+          />
+          <span className="ml-3 font-medium text-foreground">
+            Accept Messages: <span className={acceptMessages ? 'text-emerald-400' : 'text-destructive'}>{acceptMessages ? 'On' : 'Off'}</span>
+          </span>
+        </div>
+        
+        <Separator className="bg-border/60 my-6" />
+
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-bold text-white">Your Messages</h2>
+          <Button
+            variant="outline"
+            className="rounded-full bg-background/50 hover:bg-background border-border"
+            onClick={(e) => {
+              e.preventDefault();
+              fetchMessages(true);
+            }}
+          >
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin text-primary" />
+            ) : (
+              <RefreshCcw className="h-4 w-4 text-primary" />
+            )}
+          </Button>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {messages.length > 0 ? (
+            messages.map((message) => (
+              <MessageCard
+                key={message._id}
+                message={message}
+                onMessageDelete={handleDeleteMessage}
+              />
+            ))
+          ) : (
+            <div className="col-span-full py-12 text-center bg-background/30 rounded-2xl border border-border border-dashed">
+              <p className="text-muted-foreground">No messages to display.</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
