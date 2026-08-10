@@ -65,30 +65,31 @@ export async function POST(request: Request) {
 			});
 
 			await newUser.save();
+		}
 
-			// Send Verification Email
-			const emailResponse = await sendVerificationEmail(
-				email,
-				username,
-				verifyCode,
-			);
-			if (!emailResponse.success) {
-				return new Response(
-					JSON.stringify({
-						success: false,
-						message: emailResponse.message,
-					}),
-					{ status: 500 },
-				);
-			}
+		// Send Verification Email for both new users and unverified existing users
+		const emailResponse = await sendVerificationEmail(
+			email,
+			username,
+			verifyCode,
+		);
+		if (!emailResponse.success) {
 			return new Response(
 				JSON.stringify({
-					success: true,
-					message: 'User registered successfully. Verification email sent.',
+					success: false,
+					message: emailResponse.message,
 				}),
-				{ status: 201 },
+				{ status: 500 },
 			);
 		}
+
+		return new Response(
+			JSON.stringify({
+				success: true,
+				message: 'User registered successfully. Verification email sent.',
+			}),
+			{ status: 201 },
+		);
 	} catch (error) {
 		console.error('Error in sign-up route:', error);
 		return new Response(
