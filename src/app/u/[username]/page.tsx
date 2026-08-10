@@ -98,7 +98,6 @@ export default function SendMessage() {
 	};
 
 	return (
-	return (
 		<div className="container mx-auto my-8 px-4 md:px-8 w-full max-w-4xl">
 			<div className="bg-card/50 backdrop-blur-xl border border-border rounded-3xl shadow-2xl p-6 md:p-10">
 				<h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-center text-white">
