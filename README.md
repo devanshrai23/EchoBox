@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🗣️ EchoBox</h1>
+  <h1>🗣️ Spillit</h1>
   <p><strong>A modern, anonymous messaging platform powered by AI</strong></p>
 </div>
 
@@ -17,9 +17,9 @@
 
 ## 🚀 Overview
 
-EchoBox is a full-stack, anonymous messaging application designed to let users receive honest, unfiltered feedback and messages from anyone. Share your unique public link, and anyone can send you an anonymous message!
+Spillit is a full-stack, anonymous messaging application designed to let users receive honest, unfiltered feedback and messages from anyone. Share your unique public link, and anyone can send you an anonymous message!
 
-To help spark conversations, EchoBox integrates directly with Google's **Gemini AI** to auto-generate engaging, open-ended question suggestions for your friends to send you. 
+To help spark conversations, Spillit integrates directly with Google's **Gemini AI** to auto-generate engaging, open-ended question suggestions for your friends to send you. 
 
 ## ✨ Key Features
 
@@ -77,8 +77,8 @@ Ensure you have the following installed:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/EchoBox.git
-   cd EchoBox
+   git clone https://github.com/your-username/Spillit.git
+   cd Spillit
    ```
 
 2. **Install dependencies:**

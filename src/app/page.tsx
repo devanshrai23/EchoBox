@@ -23,7 +23,7 @@ export default function Home() {
 					</h1>
 					
 					<p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-						Echobox is your secret space for unfiltered feedback. Share your unique link, get real thoughts from friends, and use AI to spark amazing conversations.
+						Spillit is your secret space for unfiltered feedback. Share your unique link, get real thoughts from friends, and use AI to spark amazing conversations.
 					</p>
 
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
@@ -88,7 +88,7 @@ export default function Home() {
 
 			{/* Footer */}
 			<footer className="text-center py-8 border-t border-border text-sm text-muted-foreground bg-background">
-				© {new Date().getFullYear()} Echobox. Designed with 💜
+				© {new Date().getFullYear()} Spillit. Designed with 💜
 			</footer>
 		</main>
 	);
