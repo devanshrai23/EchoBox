@@ -28,6 +28,11 @@ export async function POST(request: Request) {
 			);
 		}
 
+		const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
+		
+		// Auto-delete messages older than 48 hours
+		user.messages = user.messages.filter(msg => new Date(msg.createdAt) >= fortyEightHoursAgo) as Message[];
+
 		const newMessage = { content, createdAt: new Date() };
 		user.messages.push(newMessage as Message);
 		await user.save();

@@ -24,7 +24,15 @@ export async function GET(request: Request) {
 	}
 
 	const userId = new mongoose.Types.ObjectId(user._id);
+	const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
+
 	try {
+		// Auto-delete messages older than 48 hours
+		await UserModel.updateOne(
+			{ _id: userId },
+			{ $pull: { messages: { createdAt: { $lt: fortyEightHoursAgo } } } }
+		);
+
 		const user = await UserModel.aggregate([
 			{ $match: { _id: userId } },
 			{ $unwind: '$messages' },
