@@ -1,6 +1,7 @@
 <div align="center">
   <h1>🗣️ Spillit</h1>
   <p><strong>A modern, anonymous messaging platform powered by AI</strong></p>
+  <p><a href="https://www.spillit.in"><strong>Visit spillit.in Live</strong></a></p>
 </div>
 
 <br />
@@ -24,11 +25,12 @@ To help spark conversations, Spillit integrates directly with Google's **Gemini 
 ## ✨ Key Features
 
 - **Personalized Dashboards**: A dedicated private space to manage, read, and delete your anonymous messages.
-- **AI-Powered Suggestions**: Integrated with Google Gemini 3.6 Flash to instantly generate unique, conversation-starting questions with a single click.
+- **Auto-Deleting Messages**: Messages automatically expire and vanish after 48 hours to ensure privacy and keep your inbox fresh.
+- **AI-Powered Suggestions**: Integrated with Google Gemini to instantly generate unique, conversation-starting questions with a single click.
 - **Secure Authentication**: Robust credential-based authentication built with `NextAuth.js` and `bcrypt`.
 - **Email Verification**: Anti-spam email OTP verification flow powered by **Resend**.
 - **Message Controls**: Ability to globally toggle accepting messages on or off directly from your dashboard.
-- **Modern UI**: A sleek, fully responsive user interface built using **Tailwind CSS** and **shadcn/ui**.
+- **Modern UI**: A sleek, fully responsive user interface with glassmorphism aesthetics, built using **Tailwind CSS** and **shadcn/ui**.
 
 ## 🛠️ Tech Stack
 
@@ -77,7 +79,7 @@ Ensure you have the following installed:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/Spillit.git
+   git clone https://github.com/devanshrai23/Spillit.git
    cd Spillit
    ```
 
