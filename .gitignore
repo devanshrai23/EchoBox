@@ -40,3 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 tmp-ama-app/
+
+# Internal Documentation
+AGENTS.md
+ARCHITECTURE.md
+CLAUDE.md
+EchoBox-Redesign-Documentation.md
+Local-Testing-and-Deployment-Workflow.md
