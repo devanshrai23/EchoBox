@@ -96,7 +96,7 @@ export default function SignUpForm() {
 			<div className="w-full max-w-md p-8 space-y-8 bg-card/50 backdrop-blur-xl border border-border rounded-3xl shadow-2xl">
 				<div className="text-center">
 					<h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3 text-white">
-						Join EchoBox
+						Join Spillit
 					</h1>
 					<p className="text-muted-foreground">Sign up to start your anonymous adventure</p>
 				</div>

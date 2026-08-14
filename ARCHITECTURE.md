@@ -1,6 +1,6 @@
-# 🗺️ EchoBox - Architecture & Data Flow
+# 🗺️ Spillit - Architecture & Data Flow
 
-This document outlines the core architecture, routing structure, and data flow of the EchoBox application. It serves as a guide for developers and AI coding assistants to understand how the application functions, how data is managed, and where specific features live.
+This document outlines the core architecture, routing structure, and data flow of the Spillit application. It serves as a guide for developers and AI coding assistants to understand how the application functions, how data is managed, and where specific features live.
 
 ---
 
