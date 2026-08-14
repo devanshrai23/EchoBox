@@ -3,14 +3,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 import { Button } from './ui/button';
 
 export default function Navbar() {
 	const { data: session } = useSession();
 	const user = session?.user;
+	const pathname = usePathname();
+	const isAuthPage = pathname === '/sign-in' || pathname === '/sign-up';
+	const isPublicProfile = pathname.startsWith('/u/');
 
 	return (
-		<nav className="p-4 md:p-6 sticky top-0 z-50 w-full border-b border-border bg-background/60 backdrop-blur-md supports-[backdrop-filter]:bg-background/40">
+		<nav className="p-4 md:p-6 sticky top-0 z-50 w-full bg-background/60 backdrop-blur-md supports-[backdrop-filter]:bg-background/40">
 			<div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
 				<Link
 					href="/"
@@ -34,13 +38,15 @@ export default function Navbar() {
 						</Button>
 					</div>
 				) : (
-					<Link href="/sign-in">
-						<Button
-							className="w-full md:w-auto rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
-						>
-							Login
-						</Button>
-					</Link>
+					!isAuthPage && !isPublicProfile && (
+						<Link href="/sign-in">
+							<Button
+								className="w-full md:w-auto rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
+							>
+								Login
+							</Button>
+						</Link>
+					)
 				)}
 			</div>
 		</nav>
