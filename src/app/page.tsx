@@ -8,15 +8,12 @@ export default function Home() {
 	return (
 		<main className="flex-grow flex flex-col bg-background text-foreground overflow-hidden">
 			{/* Hero Section */}
-			<section className="relative flex flex-col items-center justify-center px-6 py-24 md:py-32 text-center min-h-[80vh]">
+			<section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-20 text-center min-h-[60vh]">
 				{/* Background Glow */}
 				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
 
 				<div className="relative z-10 max-w-3xl space-y-8">
-					<div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-						<Sparkles className="h-4 w-4 mr-2" />
-						Now powered by Gemini AI
-					</div>
+
 					
 					<h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white drop-shadow-sm">
 						Send and receive <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">honest</span>, anonymous messages.
@@ -32,17 +29,12 @@ export default function Home() {
 								Get Started <ArrowRight className="ml-2 h-4 w-4" />
 							</Button>
 						</Link>
-						<Link href="/sign-in" className="w-full sm:w-auto">
-							<Button variant="outline" size="lg" className="w-full sm:w-auto text-base rounded-full px-8 border-border bg-card/50 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground transition-all">
-								Sign In
-							</Button>
-						</Link>
 					</div>
 				</div>
 			</section>
 
 			{/* Features Section */}
-			<section className="relative px-6 py-24 bg-card/30 border-t border-border backdrop-blur-md">
+			<section className="relative px-6 py-24 bg-card/30 backdrop-blur-md">
 				<div className="max-w-5xl mx-auto">
 					<div className="text-center mb-16">
 						<h2 className="text-3xl md:text-4xl font-bold mb-4">Everything you need to connect</h2>
@@ -87,7 +79,7 @@ export default function Home() {
 			</section>
 
 			{/* Footer */}
-			<footer className="text-center py-8 border-t border-border text-sm text-muted-foreground bg-background">
+			<footer className="text-center py-8 text-sm text-muted-foreground bg-background">
 				© {new Date().getFullYear()} Spillit. Designed with 💜
 			</footer>
 		</main>
