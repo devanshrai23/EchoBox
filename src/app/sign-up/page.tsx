@@ -77,7 +77,6 @@ export default function SignUpForm() {
 			router.replace(`/verify/${username}`);
 			setIsSubmitting(false);
 		} catch (error) {
-			console.error('Error during sign-up:', error);
 			const axiosError = error as AxiosError<ApiResponse>;
 			const errorMessage = axiosError.response?.data.message ?? 'There was a problem with your sign-up. Please try again.';
 
@@ -120,7 +119,7 @@ export default function SignUpForm() {
 									{!isCheckingUsername && usernameMessage && (
 										<p
 											className={`text-sm mt-2 font-medium ${
-												usernameMessage === 'Username is unique'
+												usernameMessage.toLowerCase() === 'username is unique'
 													? 'text-emerald-400'
 													: 'text-destructive'
 											}`}
