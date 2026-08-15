@@ -3,8 +3,11 @@
 import { Mail, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
+	const { data: session } = useSession();
+
 	return (
 		<main className="flex-grow flex flex-col bg-background text-foreground overflow-hidden">
 			{/* Hero Section */}
@@ -24,9 +27,9 @@ export default function Home() {
 					</p>
 
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-						<Link href="/sign-up" className="w-full sm:w-auto">
+						<Link href={session ? "/dashboard" : "/sign-up"} className="w-full sm:w-auto">
 							<Button size="lg" className="w-full sm:w-auto text-base rounded-full px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:scale-105">
-								Get Started <ArrowRight className="ml-2 h-4 w-4" />
+								{session ? "Go to Dashboard" : "Get Started"} <ArrowRight className="ml-2 h-4 w-4" />
 							</Button>
 						</Link>
 					</div>
